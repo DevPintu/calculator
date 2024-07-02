@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Calculator using JavaScript</title>
+    <style type="text/css">
+        body {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: #746464;
+        }
+        .main {
+            width: 300px;
+            height: auto;
+            border: 4px solid salmon;
+            box-shadow: 2px 2px 5px 2px salmon;
+            border-radius: 10px;
+            padding: 20px;
+        }
+        #result {
+            width: 90%;
+            height: 70px;
+            font-size: 2rem;
+            text-align: right;
+            padding: 10px;
+            border: 2px solid gray;
+			border-radius: 10px;
+        }
+        input[type="button"] {
+            font-weight: 700;
+            height: 60px;
+            width: 60px;
+            margin: 8px 5px;
+            border-radius: 22px;
+            border: none;
+            background: salmon;
+            font-size: 1.5rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="main">
+        <input id="result" type="text" readonly>
+        <table>
+            <tr>
+                <td><input type="button" value="AC" onclick="cleardisplay()"></td>
+                <td><input type="button" value="clr" onclick="cleardisplay()"></td>
+                <td><input type="button" value="()" class="numberBtn"></td>
+                <td><input type="button" value="/" class="numberBtn"></td>
+            </tr>
+            <tr>
+                <td><input type="button" value="7" class="numberBtn"></td>
+                <td><input type="button" value="8" class="numberBtn"></td>
+                <td><input type="button" value="9" class="numberBtn"></td>
+                <td><input type="button" value="*" class="numberBtn"></td>
+            </tr>
+            <tr>
+                <td><input type="button" value="4" class="numberBtn"></td>
+                <td><input type="button" value="5" class="numberBtn"></td>
+                <td><input type="button" value="6" class="numberBtn"></td>
+                <td><input type="button" value="-" class="numberBtn"></td>
+            </tr>
+            <tr>
+                <td><input type="button" value="1" class="numberBtn"></td>
+                <td><input type="button" value="2" class="numberBtn"></td>
+                <td><input type="button" value="3" class="numberBtn"></td>
+                <td><input type="button" value="+" class="numberBtn"></td>
+            </tr>
+            <tr>
+                <td><input type="button" value="%" class="numberBtn"></td>
+                <td><input type="button" value="0" class="numberBtn"></td>
+                <td><input type="button" value="." class="numberBtn"></td>
+                <td><input type="button" value="=" id="equalsign"></td>
+            </tr>
+        </table>
+    </div>
+
+    <script>
+        const displaytext = document.querySelector("#result");
+        const NumberBtn = document.querySelectorAll('.numberBtn');
+        const equal = document.querySelector("#equalsign");
+
+        let inputString = "";
+
+        for (let item of NumberBtn) {
+            item.addEventListener('click', (ele) => {
+                const buttonElement = ele.target.value;
+                inputString += buttonElement;
+                displaytext.value = inputString;
+            });
+        }
+
+        equal.addEventListener("click", function() {
+            displaytext.value = eval(displaytext.value);
+        });
+
+        function cleardisplay() {
+            displaytext.value = "";
+            inputString = "";
+        }
+    </script>
+</body>
+</html>
